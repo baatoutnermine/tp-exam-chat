@@ -26,7 +26,7 @@ app.post('/api/messages', (req, res) => {
   if (!author || !content) {
     return res.status(400).json({ error: 'author and content are required' });
   }
-
+// message
   const message = {
     id: nextId++,
     author: author.trim(),
