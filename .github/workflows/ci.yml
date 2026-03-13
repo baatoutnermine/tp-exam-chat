@@ -25,7 +25,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          
+
       - name: Install dependencies
         run: npm install
 
@@ -97,19 +97,17 @@ jobs:
         run: npm install -g vercel
 
       - name: Deploy to Vercel
+        working-directory: frontend
         run: |
-          cd frontend
           vercel --token ${{ secrets.VERCEL_TOKEN }} \
                  --prod \
-                 --yes \
-                 --name tp-exam-chat-frontend
+                 --yes
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 
   # ─────────────────────────────────────────
   # JOB 5 : Deploy Backend → Render
-  # (Render se redéploie automatiquement via webhook)
   # ─────────────────────────────────────────
   deploy-backend:
     name: 🚀 Deploy Backend (Render)
